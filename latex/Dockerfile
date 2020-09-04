@@ -15,6 +15,8 @@ RUN adduser \
 ARG WGET=wget
 ARG GIT=git
 ARG MAKE=make
+ARG GS=ghostscript
+
 #ARG PANDOC=pandoc
 #ARG PCITEPROC=pandoc-citeproc
 #ARG PYGMENTS=python3-pygments
@@ -26,6 +28,7 @@ RUN apt-get update && apt-get install -y \
   "$WGET" \
   "$GIT" \
   "$MAKE" \
+  "$GS" \
   # markup format conversion tool
   #"$PANDOC" \
   #"$PCITEPROC" \
@@ -51,6 +54,6 @@ ENV PATH="/home/latex/texlive/bin/x86_64-linux:${PATH}"
 
 WORKDIR /home/latex/project
 
-RUN tlmgr install multirow mdframed zref needspace
+RUN tlmgr update --self && tlmgr install multirow mdframed zref needspace soul enumitem
 
 ADD scripts /home/latex/scripts
