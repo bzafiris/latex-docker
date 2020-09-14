@@ -7,4 +7,4 @@ set -a # automatically export all variables
 source $1
 set +a
 
-sudo docker run -it --rm -v $PROJECT:/home/latex/project latex-docker_texlive bibtex $DOCUMENT
+docker run --rm -v $PROJECT:/home/latex/project latex-docker_texlive bibtex $DOCUMENT
